@@ -28,6 +28,8 @@ Route::controller(UserController::class)->name('user.')->group(function(){
 
 Auth::routes();
 
+
+
 Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -35,17 +37,18 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 
 /*------------------------------------------
 --------------------------------------------
-All Admin Routes List
+All Admin Routes List - Admin
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+
 });
 
 /*------------------------------------------
 --------------------------------------------
-All Admin Routes List
+All Admin Routes List - Manager
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
