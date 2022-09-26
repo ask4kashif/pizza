@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -15,7 +17,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// User Links
+// User Routes
 
 Route::controller(UserController::class)->name('user.')->group(function(){
     Route::get('/','welcome')->name('welcome');
@@ -25,6 +27,11 @@ Route::controller(UserController::class)->name('user.')->group(function(){
     Route::get('/contact','contact')->name('contact');
 });
 
+
+// Admin Routes
+
+Route::resource('admin/category',CategoryController::class);
+Route::resource('admin/product',ProductController::class);
 
 Auth::routes();
 

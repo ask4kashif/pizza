@@ -12,6 +12,7 @@
           {{-- <li class="nav-item"><a href="#" class="nav-link">Blog</a></li> --}}
           <li class="nav-item {{ Request::is('about') ? 'active': '' }}"><a href="{{route('user.about')}}" class="nav-link">About</a></li>
           <li class="nav-item {{ Request::is('contact') ? 'active': '' }}"><a href="{{route('user.contact')}}" class="nav-link">Contact</a></li>
+          <li class="nav-item {{ Request::is('contact') ? 'active': '' }}"><a href="{{route('login')}}" class="nav-link">Login</a></li>
         </ul>
       </div>
       </div>
