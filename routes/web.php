@@ -30,8 +30,6 @@ Route::controller(UserController::class)->name('user.')->group(function(){
 
 // Admin Routes
 
-Route::resource('admin/category',CategoryController::class);
-Route::resource('admin/product',ProductController::class);
 
 Auth::routes();
 
@@ -47,9 +45,11 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 All Admin Routes List - Admin
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:admin'])->group(function () {
+Route::middleware(['auth', 'user-access:admin'])->prefix('/admin')->group(function () {
 
-    Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+    Route::get('/home', [HomeController::class, 'adminHome'])->name('admin.home');
+    Route::resource('/category',CategoryController::class)->except('show');
+    Route::resource('/product',ProductController::class)->except('show');
 
 });
 
@@ -59,7 +59,6 @@ All Admin Routes List - Manager
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
-
     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
 });
 

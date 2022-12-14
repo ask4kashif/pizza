@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -19,7 +20,11 @@ class UserController extends Controller
      */
     public function menu()
     {
-        return view('user.menu.index');
+        $categories=Category::with('products')->get();
+
+        return view('user.menu.index',[
+            'categories'=>$categories
+        ]);
     }
     /**
      * Show the application Services page

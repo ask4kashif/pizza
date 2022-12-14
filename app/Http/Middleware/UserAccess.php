@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserAccess
 {
@@ -16,11 +18,14 @@ class UserAccess
      */
     public function handle(Request $request, Closure $next, $userType)
     {
-        if(auth()->user()->type == $userType){
+
+
+        if(Auth()->user()->type == $userType){
             return $next($request);
         }
 
-        return response()->json(['You do not have permission to access for this page.']);
+        return redirect('/');
+        // return response()->json(['You do not have permission to access for this page.']);
         /* return response()->view('errors.check-permission'); */
     }
 }

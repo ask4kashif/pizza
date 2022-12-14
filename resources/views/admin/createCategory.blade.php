@@ -17,20 +17,27 @@
                     <form action="{{route('category.store')}}" method="post">
                         @csrf
                             <div class="form-group mb-2">
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name" value="{{ old('name') }}" >
+                                <input type="text" name="name" id="name"
+                                class="form-control @error('name')
+                                    is-invalid
+                                @enderror"
+                                placeholder="Enter Name" value="{{ old('name') }}" >
 
                                 @error('name')
-                                <div class="alert alert-danger" role="alert">
-                                    {{$message}}
-                                </div>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
                                 @enderror
                             </div>
                             <div class="form-group mb-2">
-                                <input type="text" name="slug" id="slug" class="form-control" placeholder="Enter Slug"  value="{{ old('slug') }}">
+                                <input type="text" name="slug" id="slug" class="form-control @error('slug')
+                                    is-invalid
+                                @enderror"
+                                placeholder="Enter Slug"  value="{{ old('slug') }}">
                                 @error('slug')
-                                <div class="alert alert-danger" role="alert">
-                                    {{$message}}
-                                </div>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
                                 @enderror
                             </div>
                             <div class="form-group">

@@ -18,20 +18,27 @@
                         @csrf
                         @method('PUT')
                             <div class="form-group mb-2">
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name" value="{{ $category->name }}" >
+                                <input type="text" name="name" id="name" class="form-control @error('name')
+                                    is-invalid
+                                @enderror"
+                                placeholder="Enter Name" value="{{ $category->name }}" >
 
                                 @error('name')
-                                <div class="alert alert-danger" role="alert">
-                                    {{$message}}
-                                </div>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
                                 @enderror
                             </div>
                             <div class="form-group mb-2">
-                                <input type="text" name="slug" id="slug" class="form-control" placeholder="Enter Slug"  value="{{ $category->slug }}">
+                                <input type="text" name="slug" id="slug" class="form-control @error('slug')
+                                    is-invalid
+                                @enderror"
+                                placeholder="Enter Slug"  value="{{ $category->slug }}">
+
                                 @error('slug')
-                                <div class="alert alert-danger" role="alert">
-                                    {{$message}}
-                                </div>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
                                 @enderror
                             </div>
                             <div class="form-group">
